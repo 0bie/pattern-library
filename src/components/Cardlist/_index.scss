@@ -1,0 +1,123 @@
+.cardlist {
+  @include breakpoint(min, $smaller) {
+    display: flex;
+  }
+}
+
+.cardlist-container {
+  max-width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include breakpoint(max, 56.25em) {
+    padding-right: 2.5em;
+    padding-left: 2.5em;
+  }
+}
+
+.cardlist-item {
+
+  @include breakpoint(max, $smaller) {
+    box-shadow: 0 0 0.625em rgba(0, 0, 0, 0.2);
+    margin-bottom: 0.9375em;
+  }
+
+  @include breakpoint(min, $smaller) {
+    /* Establish container for cardlist-desc */
+    position: relative;
+    margin-left: -1.875em;
+  }
+
+  @include breakpoint(min, $small) {
+    margin-left: -2.8125em;
+  }
+}
+
+.cardlist-content {
+  /*
+   * Establish new stacking context to contain cardlist-overlay
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+   */
+  position: relative;
+  z-index: get-zindex(overlay); /* Refer to base/variables for z-index scale */
+  overflow: hidden;
+  box-shadow: 0 0 0.625em 0.25em rgba(0, 0, 0, 0.1);
+}
+
+.cardlist-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: ( get-zindex(overlay) - 10 );
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.cardlist-item img {
+  display: block;
+  width: 100%;
+}
+
+.cardlist-options {
+  /**
+   * New block formatting context to avoid reflow when display property is changed (see cardlist.utils)
+   * (https://www.w3.org/TR/css3-box/#block-level0)
+   */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: get-zindex(overlay); /* match z-index for overlay */
+  display: flex;
+  justify-content: space-around;
+  // padding: 0.2em 0.5em 0.2em 0.5em;
+  background-color: color(var(--skin-default) a(50%));
+
+  @include breakpoint(min, $smaller) {
+    display: none;
+    justify-content: space-between;
+  }
+}
+
+.cardlist-options .icon {
+  fill: var(--skin-default-fore);
+}
+
+.cardlist-options .btn {
+  border: 0;
+}
+
+.cardlist-desc {
+  padding: 0.5em;
+  white-space: nowrap;
+
+  @include breakpoint(min, $smaller) {
+    /**
+     * New block formatting context to avoid reflow when display property is changed (see cardlist.utils)
+     * (https://www.w3.org/TR/css3-box/#block-level0)
+     */
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: get-zindex(base); /* Refer to base/variables for z-index scale */
+
+    display: none;
+    padding-left: 0;
+  }
+}
+
+/**
+ * Interaction states for hidden elements in larger viewports
+ */
+.cardlist-item--active {
+  z-index: get-zindex(flyout); /* Refer to base/variables for z-index scale */
+}
+
+.cardlist-item--active .cardlist-desc {
+  display: block;
+}
+
+.cardlist-item--active .cardlist-options {
+  display: flex;
+}

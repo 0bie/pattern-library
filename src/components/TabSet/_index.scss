@@ -1,0 +1,62 @@
+.tab-list {
+  position: relative;
+  display: flex;
+  color: inherit;
+}
+
+.tab-item {
+  flex: 1;
+  border: 0.0625em solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tab-item--active .tab-title {
+  background-color: var(--skin-default);
+  color: #fff;
+  border: 0;
+}
+
+.tab-title {
+  font-size: 1rem;
+  position: relative;
+  display: block;
+  padding: 0.5em;
+}
+
+.tab-item--active .tab-title::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  content: "";
+  width: 0;
+  height: 0;
+  color: var(--skin-default);
+  border: solid transparent;
+  border-top-color: currentColor;
+  border-width: 0.75em;
+  margin-left: -0.75em;
+}
+
+.tab-section {
+  @include transition(opacity, 0.3s);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  padding: 1em;
+  text-transform: none;
+  text-align: left;
+  cursor: initial;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.tab-item--active .tab-section {
+  opacity: 1;
+  visibility: visible;
+  color: var(--skin-default);
+  z-index: get-zindex(apex);
+}

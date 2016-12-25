@@ -1,0 +1,137 @@
+.nav--a {
+  position: relative;
+  max-width: 43.75em;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5em 1.25em;
+  color: inherit;
+  /* Prevent scrolling due to menu icon target area */
+  overflow: hidden;
+}
+
+.nav--a .logo {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.nav--a .logo-text {
+  display: inline;
+  vertical-align: middle;
+}
+
+.nav--a .icon {
+  vertical-align: middle;
+}
+
+/* Align menu icon */
+.nav--a .icon--menu {
+  position: absolute;
+  right: 1em;
+  margin-top: 0.8125em;
+
+  @include breakpoint(min, 42.6875em) {
+    display: none;
+  }
+}
+
+/* Navigation list */
+.nav--a-list {
+  display: inline;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  text-align: center;
+
+  @include breakpoint(min, $smaller) {
+    text-align: initial;
+    border-left: 1px solid currentColor;
+    margin-left: 0.625em;
+  }
+
+  @include breakpoint(max, 42.625em) {
+    display: none;
+  }
+}
+
+.nav--a-item {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  text-transform: capitalize;
+
+  @include breakpoint(min, $smaller) {
+    display: inline-block;
+    padding-left: 1.25em;
+  }
+}
+
+.nav--a-item a {
+  text-decoration: none;
+  letter-spacing: 0.0625em;
+}
+
+/*
+ * Mobile Navigation
+ */
+
+.nav--a--sm {
+  @include transition(background-color, 0.75s);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: (get-zindex(modal)); /* refer to base/variables for z-index layers */
+  height: 100vh;
+  text-align: center;
+  background-color: transparent;
+  visibility: hidden;
+}
+
+.nav--a--sm.is-open {
+  background-color: color(var(--skin-default) a(95%));
+  margin-bottom: -1.25em;
+  visibility: visible;
+}
+
+/* Align exit icon */
+.nav--a--sm .icon--exit {
+  position: absolute;
+  right: 1.25em;
+  z-index: ( get-zindex(modal) + 20 );// 4.6
+
+  display: block;
+  height: 2em;
+  width: 2em;
+  margin-top: 1.25em;
+  cursor: pointer;
+}
+
+/* Mobile navigation list */
+.nav--a--sm-list {
+  padding-top: 2.5em;
+}
+
+.nav--a--sm-list a {
+  font-size: 1.5rem;
+  display: block;
+  /* Use arithmetic expressions to provide context for random values E.g
+   * padding-top:( (16 / 24) * 1em ); instead of
+   * padding-top:0.6666666667em;
+   */
+  padding-top: ( (16 / 24) * 1em );
+  padding-bottom: ( (16 / 24) * 1em );
+  text-decoration: none;
+  color: var(--skin-default-fore);
+  text-transform: capitalize;
+  letter-spacing: ( (1 / 24) * 1em );
+}
+
+.nav--a--sm-list a:hover {
+  text-decoration: underline;
+}
+
+/*
+ * Prevent background scrolling when nav modal is active
+ */
+html.nav--a--is-active {
+  overflow: hidden;
+}

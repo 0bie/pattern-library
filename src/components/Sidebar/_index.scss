@@ -1,0 +1,70 @@
+.sidebar {
+  @include transition(transform, 0.75s);
+  display: flex;
+  flex: 0 0 5em;
+  flex-direction: column;
+  max-width: 5em;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.sidebar a {
+  display: block;
+  cursor: pointer;
+}
+
+.sidebar-item {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  color: inherit;
+}
+
+.sidebar-item .btn {
+  border: transparent;
+}
+
+.sidebar-item button:focus {
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar--top {
+  @include translate(null, -6em);
+  left: 0;
+  right: 0;
+  top: 0;
+  max-width: none;
+  height: auto;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.sidebar--bottom {
+  @include translate(null, 6em);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: none;
+  height: auto;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.sidebar--left {
+  @include translate(-5em, null);
+  top: 0;
+  left: 0;
+  padding: 0.5em;
+}
+
+.sidebar--right {
+  @include translate(5em, null);
+  top: 0;
+  right: 0;
+  padding: 0.5em;
+}
+
+.sidebar--active {
+  @include translate(0, 0);
+}

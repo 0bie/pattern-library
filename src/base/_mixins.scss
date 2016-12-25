@@ -1,0 +1,316 @@
+
+/* TODO: Review mixin use cases, mixins to generate components */
+
+/**
+ * animation
+ * @param {list} $values - Animation properties
+ * @example:
+ *
+ *    .useCase {
+ *        @include animation(animationName 1.5s ease 0.5s infinite);
+ *    }
+ */
+@mixin animation($values) {
+  // Check if the `$values` list contains an adequate number of parameters for animation shorthand
+  @if (length($values) >= 2) {
+    animation: #{$values};
+  } @else {
+    @error "animation shorthand requires 2 or more values";
+  }
+}
+
+/**
+ * keyframes
+ * @param {string} $animationName
+ * @example:
+ *
+ *  @include keyframes(animationName) {
+ *      0%{...}
+ *      50%{...}
+ *      100%{...}
+ *  }
+ */
+@mixin keyframes($animationName) {
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+/**
+ * breakpoint
+ * @param {string} $query - min/max
+ * @param {number} $vw_1 - viewport width
+ * @param {number} $vw_2
+ * Refer to ./variables for default viewport values
+ * Refer to ./functions for has-unit()
+ *
+ * @examples:
+ *
+ *     .useCase1 {
+ *         @include breakpoint(min, $smaller) {
+ *             padding: 0;
+ *         }
+ *     }
+ *     .useCase2 {
+ *         @include breakpoint(max, 50em) {
+ *             padding: 0;
+ *         }
+ *     }
+ *     .useCase3 {
+ *         @include breakpoint(null, $smaller, $small) {
+ *             padding: 0;
+ *         }
+ *     }
+ */
+@mixin breakpoint(
+  $query,
+  $vw1,
+  $vw2: null
+){
+  @if (($query == 'min') and has-unit($vw1, 'breakpoint')) {
+    @media (min-width: $vw1) { @content; }
+  } @else if (($query == 'max') and has-unit($vw1, 'breakpoint')) {
+    @media (max-width: $vw1) { @content; }
+  } @else if ($query == null) {
+    @if (has-unit($vw1, 'breakpoint') and has-unit($vw2, 'breakpoint')) {
+      @media (min-width: $vw1) and (max-width: $vw2) { @content; }
+      }
+    } @else {
+    @error 'breakpoint mixin: `#{$query}` should be `min`, `max` or `null`';
+    }
+}
+
+// .test8 {
+//   @include breakpoint(foo, 80em, 90em) {
+//     overflow: visible;
+//   }
+// }
+
+.test7 {
+  @include breakpoint(null, 80em, 90em) {
+    overflow: visible;
+  }
+}
+
+.test6 {
+  @include breakpoint(max, 80em) {
+    overflow: visible;
+  }
+}
+
+.test5 {
+  @include breakpoint(min, 80em) {
+    overflow: visible;
+  }
+}
+
+/**
+ * transition
+ * @param {string} $property
+ * @param {number} $duration
+ * @param {string} $timing-function
+ * @param {number} $delay
+ *
+ * @example:
+ *
+ *     .useCase {
+ *         @include transition(all, 0.5s, ease, 0.5s);
+ *     }
+ */
+@mixin transition(
+  $property,
+  $duration,
+  $timing-function: ease,
+  $delay: 0s
+){
+  transition: $property $duration $timing-function $delay;
+}
+
+/**
+ * flexbox
+ * @param {string} $direction - column/row
+ * @param {string} $wrap - nowrap/wrap/wrap-reverse
+ * @param {string} $justify - flex-start/flex-end/center/space-between/space-around
+ * @example:
+ *
+ *     .useCase {
+ *         @inlcude flexbox($flex-wrap: nowrap);
+ *     }
+ */
+@mixin flexbox(
+  $direction: row,
+  $wrap: wrap,
+  $justify: null
+){
+  @supports (display: flex) {
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+    justify-content: $justify;
+  }
+}
+
+/**
+ * flexbox center
+ * @example:
+ *
+ *     .useCase {
+ *         @inlcude flexbox-center();
+ *     }
+ */
+@mixin flexbox-center() {
+  @supports (display: flex) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/**
+ * rotate
+ * @param {number} $turn
+ * Refer to ./functions for has-unit()
+ * @example:
+ *
+ *     .useCase {
+ *         @include rotate(0.25turn);
+ *     }
+ */
+@mixin rotate ($turn) {
+  @if (has-unit($turn, 'rotate')) {
+    transform: rotate($turn);
+  }
+}
+
+.test4 {
+  @include rotate(1turn);
+}
+
+/**
+ * axis_rotate
+ * @param {number} $x
+ * @param {number} $y
+ * Refer to ./functions for has-unit()
+ * @example:
+ *
+ *     .useCase1 {
+ *         @include axis-rotate(180deg, null) // rotateX
+ *     }
+ *
+ *     .useCase2 {
+ *         @inlcude axis-rotate(null, 180deg) // rotateY
+ *     }
+ */
+@mixin axis-rotate(
+  $x: null,
+  $y: null
+){
+  @if (($x != null and $y == null) and has-unit($x, 'axis-rotate')) {
+    transform: rotateX($x);
+  } @else if (($y != null and $x == null) and has-unit($y, 'axis-rotate')) {
+    transform: rotateY($y);
+  } @else if ($x == null and $y == null ) {
+    @error "axis-rotate mixin requires a valid x or y value";
+  } @else {
+    @error "axis-rotate mixin: `null` is a required value";
+  }
+}
+
+.test3 {
+  @include axis-rotate(2turn, null);
+}
+
+/**
+ * scale
+ * @param {number} $size
+ * Refer to ./functions for `is-number()`
+ * @example:
+ *
+ *     .useCase {
+ *         @include scale(1.2);
+ *     }
+ */
+@mixin scale ($size) {
+  @if (is-number($size)) {
+    transform: scale($size);
+  } @else {
+    @error "scale mixin: `#{$size}` must be a valid numeric value";
+  }
+}
+
+.test2 {
+  @include scale(5);
+}
+
+/**
+ * axis_scale
+ * @param {number} $x
+ * @param {number} $y
+ * Refer to ./functions for `is-number()`
+ * @example:
+ *
+ *     .useCase {
+ *         @include axis-scale(1.2, null) // scaleX
+ *         @include axis-scale(null, 1.2) // scaleY
+ *         @include axis-scale(1, 1.2) // scale(X,Y)
+ *     }
+ */
+@mixin axis-scale(
+  $x: null,
+  $y: null
+){
+  @if (($x != null and $y == null) and is-number($x)) {
+    transform: scaleX($x);
+  } @else if (($y != null and $x == null) and is-number($y)) {
+    transform: scaleY($y);
+  } @else if (is-number($x) and is-number($y)) {
+    transform: scale($x, $y);
+  } @else if ($x == null and $y == null ) {
+    @error "axis_scale mixin requires a valid x or y value";
+  } @else {
+    @error "axis-scale mixin: #{$x} or #{$y} should be a valid numeric value";
+  }
+}
+
+.test1 {
+  @include axis-scale(50, 1);
+}
+
+/**
+ * Translate
+ * @param {number} $x
+ * @param {number} $y
+ * Refer to ./functions for `is-number()`
+ * @example:
+ *
+ *     .useCase {
+ *         @include translate(1em, null) // translateX
+ *         @include translate(null, 1em) // translateY
+ *         @include translate(1em, 1.2em) // translate(X, Y)
+ *     }
+ */
+@mixin translate(
+  $x: null,
+  $y: null
+){
+  @if (($x != null and $y == null) and is-number($x)) {
+    transform: translateX($x);
+  } @else if (($y != null and $x == null) and is-number($y)) {
+    transform: translateY($y);
+  } @else if (($x != null and $y != null) and is-number($x $y)) {
+    transform: translate($x, $y);
+  } @else if ($x == null and $y == null) {
+    @error "translate mixin requires a valid x or y value";
+  } @else {
+    @error "translate mixin: #{$x} or #{$y} should be a valid numeric value";
+  }
+}
+
+.test {
+  @include translate(null, 6em);
+  $x: 1em;
+  @debug type-of($x);
+  @debug(type-of(1));
+  @debug(type-of('1'));
+  @debug type-of(null);
+}

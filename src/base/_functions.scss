@@ -1,0 +1,50 @@
+// To call a function without passing it as an expression,
+// the following syntax is required: `@if functionName($arg) {};`
+// E.g `log("error message");` === `@if log("error message") {};`
+// `@return null` is used to avoid compiler errors in some cases where nothing is expected
+// Reference: http://www.sassmeister.com/gist/26ade0f335ac8c1c9e3d - @author: Hugo Giraudel
+
+// Error handling
+// @param {string} $message - Message to log
+@function log($message) {
+  @if feature-exists('at-error') != true {
+    @warn $message;
+  } @else {
+    @error $message;
+  }
+}
+
+// Check for number type
+// @param {list} $values
+@function is-number($values) {
+  @each $value in $values {
+    @return type-of($value) == number;
+  }
+}
+
+// Check for number type and unit
+// @param {number} $value
+// @param {string} $mixin - The mixin containing `$value`
+@function has-unit($value, $mixin) {
+  @if (type-of($value) != number) or unitless($value) {
+    @if log("#{$mixin} mixin: `#{$value}` must be a valid numeric value") {}; // sass-lint:disable-line no-empty-rulesets
+  }
+  @return type-of($value) == number;
+}
+
+// Check for string type
+// @param {list} $values
+@function is-string($values) {
+  @each $value in $values {
+    @return type-of($value) == string;
+  }
+}
+// Get default z-index values
+// Refer to zIndex-layers map in ./variables
+@function get-zindex($layer) {
+  @if map-has-key($zIndex-layers, $layer) {
+    @return map-get($zIndex-layers, $layer);
+  }
+  @if log("Unknown `#{$layer}` in $zIndex-layers map") {}; // sass-lint:disable-line no-empty-rulesets
+  @return null;
+}

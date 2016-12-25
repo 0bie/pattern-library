@@ -1,0 +1,109 @@
+/**
+ * css variables used to apply theme specific values
+ * Syntax: --<property>-<identifier>[-componentName]
+ * E.g: --color-primary-btn || --size-1-btn
+ */
+
+:root {
+  /* Defaults */
+  --error: #881820;
+  --disabled: rgba(128, 128, 128, 0.6);
+  --link: #225aa9;
+
+  /* Font */
+  --system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --size-1-font: 0.64;
+  --size-2-font: 0.8;
+  --size-3-font: 1;
+  --size-4-font: 1.25;
+  --size-5-font: 1.563;
+  --size-6-font: 1.953;
+  --size-7-font: 2.441;
+
+  /* Button */
+  --size-sm-btn: 0.1875em 0.625em;
+  --size-md-btn: 0.5em 1em;
+  --size-lg-btn: 1em 1.25em;
+  --size-circle-btn: 60px;
+  --radius-default-btn: 1.875;
+
+  /* Checkbox */
+  --size-sm-check: 1.25;
+  --size-md-check: 1.75;
+  --size-lg-check: 2.8125;
+
+  /* Icon */
+  // --size-sm-icon: 1.875;
+  // --size-md-icon: 2.625;
+  // --size-lg-icon: 3.75;
+
+  --size-xsm-icon: 0.5;
+  --size-sm-icon: 1;
+  --size-md-icon: 1.5;
+  --size-lg-icon: 2;
+  --size-xl-icon: 3;
+
+  /* Image */
+  --size-xsm-img: 32;
+  --size-sm-img: 64;
+  --size-md-img: 128;
+  --size-lg-img: 256;
+  --size-xl-img: 612;
+
+  /* Radio */
+  // --size-sm-radio: ;
+  // --size-md-radio: ;
+  // --size-lg-radio: ;
+
+  /* Toggle */
+  // --size-1-toggle: ;
+  // --size-2-toggle: ;
+  // --size-3-toggle: ;
+  // --size-4-toggle: ;
+  // --size-5-toggle: ;
+
+  /* Skins */
+  --skin-default: #637280;
+  --skin-default-fore: color(var(--skin-default) contrast(51%));
+}
+
+/* Breakpoint */
+/* Refer to ./mixins for usage */
+$small: (50 * 1em) !default;
+$preSmall: (50 - 0.0625 * 1em) !default;
+$postSmall: (50 + 0.0625 * 1em) !default;
+
+$smaller: (40 * 1em) !default;
+$preSmaller: (40 - 0.0625 * 1em) !default;
+$postSmaller: (40 + 0.0625 * 1em) !default;
+
+$smallest: (30 * 1em) !default;
+$preSmallest: (30 - 0.0625 * 1em) !default;
+$postSmallest: (30 + 0.0625 * 1em) !default;
+
+/**
+ * z-index
+ *     .useCase {
+ *         z-index: get-zindex(base);
+ *     }
+ */
+$zIndex-layers: (
+  base: 5,
+  overlay: 20,
+  flyout: 30,
+  modal: 40,
+  apex: 50
+) !default;
+
+/* Icons */
+$socialIcons: (
+  dribbble: #F26798,
+  dropbox: #0089D1,
+  facebook: #3B5998,
+  googleplus: #DC4A38,
+  instagram: #325C86,
+  pinterest: #CB2027,
+  twitter: #2AA9E0,
+  vimeo: #1cb7ea,
+  youtube: #D72523
+) !default;

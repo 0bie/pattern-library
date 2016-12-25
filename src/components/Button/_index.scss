@@ -1,0 +1,136 @@
+// .btn {
+//   --skin-default: #457;
+//   --size-1-btn: 0.2;
+//   font-size: 1rem;
+//   font-family: inherit;
+//   display: inline-block;
+//   border: 0.0625em solid currentColor;
+//   background-color: transparent;
+//   cursor: pointer;
+//   color: var(--skin-default);
+//   padding: calc(var(--size-1-btn) * 1em);
+// }
+//
+// .btn_alt {
+//   color: var(--skin-default);
+//   padding: calc(var(--size-1-btn) * 1em);
+// }
+//
+// .btn_alt .Icon {
+//   fill: var(--skin-default);
+// }
+
+.btn {
+  --skin-default: #e5e6e9 #dfe0e4 #d0d1d5;
+  font-size: 1rem;
+  border: 0.0625em solid;
+  border-color: var(--skin-default);
+  background-color: transparent;
+  color: inherit;
+  vertical-align: middle;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn.pill {
+  border-radius: calc(var(--radius-default-btn) * 1em);
+}
+
+/* Sizes */
+.btn--sm {
+  padding: var(--size-sm-btn);
+}
+
+.btn--md {
+  padding: var(--size-md-btn);
+}
+
+.btn--lg {
+  padding: var(--size-lg-btn);
+}
+
+.btn--xl {
+  padding: var(--size-md-btn);
+  width: 100%;
+}
+
+/* Shapes */
+.btn--circle {
+  width: var(--size-circle-btn);
+  height: var(--size-circle-btn);
+  border-radius: calc(var(--radius-default-btn) * 1em);
+  padding: 0;
+}
+
+/* Appearance */
+.btn--link {
+  border: 0;
+}
+
+.btn--link:hover {
+  text-decoration: underline;
+}
+
+.btn--raised {
+  box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
+}
+
+/* States */
+@include keyframes(rotate) {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn--loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn--loading:after {
+  @include animation(rotate 0.5s linear infinite);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "";
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid var(--skin-default);
+  border-radius: 8px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+.btn[disabled],
+.btn--disabled {
+  pointer-events: none;
+  color: var(--disabled);
+}
+
+.btn[disabled] .icon,
+.btn--disabled .icon {
+  fill: var(--disabled);
+}
+
+/* Button Group */
+.btngroup--inline {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.btngroup--block {
+  display: flex;
+}
+
+.btngroup--inline .btn,
+.btngroup--block .btn {
+  flex: 1 0 auto;
+}
+
+.btngroup--inline .btn:not(:last-child),
+.btngroup--block .btn:not(:last-child) {
+  border-right-width: 0;
+}

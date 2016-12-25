@@ -1,0 +1,83 @@
+.accordion {
+  padding: 1.875em 1.25em;
+}
+
+.accordion-container {
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.accordion-title {
+  position: relative;
+  display: block;
+  font-size: 1rem;
+  font-weight: normal;
+  border-bottom: 0.0625em solid #eee;
+  vertical-align: middle;
+  cursor: pointer;
+
+  @include breakpoint(min, $small) {
+    font-size: 1.125rem;
+  }
+}
+
+.accordion-title:before,
+.accordion-title:after {
+  @include transition(transform, 0s);
+  position: absolute;
+  top: 5px;
+
+  content: "";
+  display: block;
+  height: 2px;
+  color: inherit;
+  border-left: 12px solid currentColor;
+  cursor: pointer;
+
+  @include breakpoint(min, $small) {
+    border-left-width: 14px;
+  }
+}
+
+.accordion-title:before {
+  @include rotate(0.15turn);
+  right: 6px;
+
+  @include breakpoint(min, $small) {
+    right: 8px;
+  }
+}
+
+.accordion-title:after {
+  @include rotate(0.85turn);
+  right: 0;
+}
+
+.accordion-section:not(:first-child) {
+  padding-top: 1.875em;
+}
+
+.accordion-content {
+  max-height: 0vh;
+  overflow: hidden;
+  opacity: 0;
+}
+
+/**
+ * Interaction states for hidden content sections
+ */
+
+.accordion-section--active .accordion-title:before {
+  @include rotate(1.35turn);
+}
+
+.accordion-section--active .accordion-title:after {
+  @include rotate(0.65turn);
+}
+
+.accordion-section--active .accordion-content {
+  max-height: 100vh;
+  opacity: 1;
+  padding-top: 1.25em;
+}

@@ -1,0 +1,126 @@
+/* Prevent svg symbols from occupying space in the document */
+#sprite {
+  display: none;
+}
+
+.icon {
+  fill: currentColor;
+  color: inherit;
+}
+
+/* Refer to base/variables for icon sizes */
+.icon--xsm {
+  width: calc(var(--size-xsm-icon) * 1em);
+  height: calc(var(--size-xsm-icon) * 1em);
+}
+
+.icon--sm {
+  width: calc(var(--size-sm-icon) * 1em);
+  height: calc(var(--size-sm-icon) * 1em);
+}
+
+.icon--md {
+  width: calc(var(--size-md-icon) * 1em);
+  height: calc(var(--size-md-icon) * 1em);
+}
+
+.icon--lg {
+  width: calc(var(--size-lg-icon) * 1em);
+  height: calc(var(--size-lg-icon) * 1em);
+}
+
+.icon--xl {
+  width: calc(var(--size-xl-icon) * 1em);
+  height: calc(var(--size-xl-icon) * 1em);
+}
+
+/* Menu icon */
+.icon--menu {
+  cursor: pointer;
+}
+
+.icon--menu span {
+  position: relative;
+  display: block;
+  height: 0.2em;
+  width: 1.5em;
+  background-color: currentColor;
+}
+
+.icon--menu span:before,
+.icon--menu span:after {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 0.2em;
+  width: 1.5em;
+  background-color: currentColor;
+}
+
+.icon--menu span:before {
+  top: 0.625em;
+}
+
+.icon--menu span:after {
+  top: -0.625em;
+}
+
+/* Target area for menu icon */
+.icon--menu:before,
+.icon--menu:after {
+  position: absolute;
+  top: -1.25em;
+  content: "";
+  padding: 1.5625em;
+}
+
+.icon--menu:before {
+  left: 0;
+}
+
+.icon--menu:after {
+  right: 0;
+}
+
+/* Exit icon */
+.icon--exit span {
+  position: relative;
+  font-size: 1.5rem;
+  display: block;
+  color: var(--skin-default-fore);
+}
+
+.icon--exit span:before,
+.icon--exit span:after {
+  position: absolute;
+  content: "";
+  display: block;
+  height: ( (5 / 24) * 1em );
+  width: 1.5em;
+  background-color: currentColor;
+}
+
+.icon--exit span:before {
+  @include rotate(-0.12turn); /* Refer to base/mixins */
+}
+
+.icon--exit span:after {
+  @include rotate(0.12turn); /* Refer to base/mixins */
+}
+
+/* Target area for exit icon */
+.icon--exit:before,
+.icon--exit:after {
+  position: absolute;
+  top: -1.25em;
+  content: "";
+  padding: 1.5625em;
+}
+
+.icon--exit:before {
+  left: 0;
+}
+
+.icon--exit:after {
+  right: 0;
+}

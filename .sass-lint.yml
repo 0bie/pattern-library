@@ -1,0 +1,117 @@
+# Linter Options
+options:
+  # Don't merge default rules
+  merge-default-rules: false
+# File Options
+files:
+  include: '**/*.s+(a|c)ss'
+  ignore:
+  - 'node_modules/**/*.*'
+# Rule Configuration
+rules:
+  # Extends
+  extends-before-mixins: 2
+  extends-before-declarations: 2
+  placeholder-in-extend: 0
+
+  # Mixins
+  mixins-before-declarations: 2
+
+  # Line Spacing
+  one-declaration-per-line: 2
+  empty-line-between-blocks: 2
+
+  # Disallows
+  no-color-keywords: 2
+  no-color-literals: 0
+  no-css-comments: 0
+  no-debug: 0
+  no-duplicate-properties: 2
+  no-empty-rulesets: 1
+  no-extends: 0
+  no-important: 0
+  no-invalid-hex: 2
+  no-mergeable-selectors: 2
+  no-misspelled-properties: 0
+  no-trailing-whitespace: 2
+  no-trailing-zero: 2
+  no-transition-all: 2
+  no-url-protocols: 2
+  no-vendor-prefixes:
+      - 2
+      -
+          ignore-non-standard: true
+  no-warn: 0
+
+  # Nesting
+  force-attribute-nesting: 0
+  force-element-nesting: 0
+  force-pseudo-nesting: 0
+
+
+
+  # Style Guide
+  bem-depth:
+      - 2
+      - max-depth: 2
+  border-zero:
+      - 2
+      - convention: '0'
+  brace-style:
+      - 2
+      - style: '1tbs'
+  clean-import-paths:
+      - 2
+      - leading-underscore: false
+      - filename-extension: false
+  empty-args:
+      - 2
+      - include: true
+  hex-length:
+      - 2
+      - style: short
+  indentation:
+      - 2
+      - size: 2
+  leading-zero:
+      - 2
+      - include: true
+  nesting-depth:
+      - 2
+      - max-depth: 1
+  quotes:
+      - 0
+      - style: double
+  url-quotes: 0
+
+  # Inner Spacing
+  space-after-comma:
+      - 2
+      - include: true
+  space-before-colon:
+      - 2
+      - include: false
+  space-after-colon:
+      - 2
+      - include: true
+  space-before-brace:
+      - 2
+      - include: true
+  space-before-bang:
+      - 2
+      - include: true
+  space-after-bang:
+      - 2
+      - include: false
+  space-between-parens: 1
+  space-around-operator:
+      - 2
+      - include: true
+
+  # Final Items
+  trailing-semicolon:
+      - 2
+      - include: true
+  final-newline:
+      - 2
+      - include: false

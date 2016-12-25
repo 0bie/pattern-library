@@ -1,0 +1,82 @@
+.media {
+  overflow: hidden;
+}
+
+.media-container {
+  /*
+  * Establish new stacking context to contain footer
+  * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+  */
+  position: relative;
+  z-index: get-zindex(overlay); /* Refer to base/variables for z-index scale */
+
+  overflow: hidden;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include breakpoint(min, 43.75em) {
+    max-width: 70%;
+  }
+}
+
+.media-title {
+  font-weight: normal;
+}
+
+.media-item {
+  padding: 1.25em;
+
+  @include breakpoint(min, $smallest) {
+    width: calc(50% - 1.25em);
+    margin-right: 1.25em;
+    float: left;
+  }
+}
+
+.media-item img {
+  display: block;
+  min-width: 100%;
+  width: 100%;
+}
+
+.media-item .icon {
+  width: 100%;
+  height: 100%;
+}
+
+.media-content {
+  padding: 1.25em;
+
+  @include breakpoint(min, $smallest) {
+    width: calc(50% - 1.25em);
+    float: left;
+  }
+}
+
+.media-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: ( get-zindex(overlay) - 10 );
+  text-transform: capitalize;
+}
+
+.media-footer .content {
+  background-color: color(var(--skin-default) a(50%));
+  color: var(--skin-default-fore);
+  padding: 1.25em;
+  text-transform: uppercase;
+}
+
+.media-footer.flyout { /* Refer to base.utils for flyOut */
+  @include transition(transform, 0.5s);
+  @include translate(null, 4.0625em); //refer to base.mixins
+  bottom: 0;
+  z-index: get-zindex(flyout); /* 2.3 */
+}
+
+.media-container:hover .flyout {
+  @include translate(null, 0);
+}

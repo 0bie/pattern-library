@@ -1,0 +1,70 @@
+.card {
+  overflow: hidden;
+}
+
+.card-container {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.1875em;
+  // overflow:hidden;
+  /*
+  * Establish new stacking context to contain footer flyout (refer to card.utils)
+  * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+  */
+  position: relative;
+  z-index: get-zindex(flyout); /* Refer to base/variables for z-index scale */
+
+  @include breakpoint(min, $smallest) {
+    max-width: 50%;
+  }
+
+  @include breakpoint(min, 75em) {
+    max-width: 30%;
+  }
+}
+
+.card-item img {
+  display: block;
+  min-width: 100%;
+}
+
+.card-item .icon {
+  width: 100%;
+  height: 100%;
+}
+
+.card-content {
+  padding: 1.25em;
+}
+
+.card-footer .content {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.25em 0.75em;
+}
+
+.card-footer .btn {
+  font-size: 0.8125rem;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: 0;
+}
+
+/* Interaction states for hidden content */
+
+.card-footer.flyout { /* Refer to base/utils for `flyout` */
+  @include transition(transform, 0.5s);
+  @include translate(null, 3.125em); /* Refer to base/mixins */
+  /**
+   * Establish a higher stacking order to overlap adjacent elements
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+   */
+  position: relative;
+  bottom: 0;
+  z-index: calc(get-zindex(flyoutt) - 10);
+}
+
+.card-container:hover .flyout {
+  @include translate(null, 0); /* Refer to base/mixins */
+}

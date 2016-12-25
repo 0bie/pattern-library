@@ -1,0 +1,14 @@
+.list {
+  overflow: hidden;
+  border: 1px solid #dbdbdb;
+  position: relative;
+}
+
+.list-item {
+  padding: 0.5em;
+}
+
+.list-item:not(:last-child) {
+  border: 0 solid #dbdbdb;
+  border-bottom-width: 1px;
+}

@@ -1,0 +1,47 @@
+.nav {
+  // @include translate(12.5em, null)
+  flex: 1 0 15%;
+  height: 100vh;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  padding-left: 1.25em;
+  padding-top: 1.25em;
+  border-right: 1px solid currentColor;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+  // @include breakpoint($min, 93.75em) {
+  //   @include translate(0, null)
+  // }
+}
+
+.js .nav {
+  transition: transform 0.5s;
+}
+
+.nav-wrp {
+  position: relative;
+  height: 100vh;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  line-height: 2;
+}
+
+.btn--nav {
+  position: absolute;
+  top: 50%;
+  left: calc(12.5em - 45px);
+  transform: rotate(0.25turn);
+  border-width: 1px 1px 0;
+  border-style: solid;
+  border-color: #ccc;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  @include breakpoint(min, 93.75em) {
+    display: none;
+  }
+}
