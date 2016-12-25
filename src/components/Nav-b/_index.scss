@@ -7,7 +7,7 @@
   }
 }
 
-.nav--b-sub {
+.nav--b--sub {
   display: none;
 
   @include breakpoint(min, 78.125em) {
@@ -18,7 +18,7 @@
 }
 
 .nav--b .flyout,   /* Refer to base/utils for flyout */
-.nav--b-sub .flyout {
+.nav--b--sub .flyout {
   @include transition(opacity, 0.2s, ease); /* Refer to base/mixins */
   top: -0.625em;
   font-size: 0.8125rem;
@@ -123,10 +123,6 @@
   position: relative;
 }
 
-// .nav--b--sm-item:first-of-type {
-//   flex-basis: 3.125em;
-// }
-
 .nav--b--sm-item:last-of-type {
   flex-grow: 1;
   text-align: center;
@@ -214,22 +210,4 @@
 
 .nav--b--sm .caret--right.is-active::after {
   @include rotate(0.5turn);
-}
-
-/*
- * Interaction states for hidden content sections
- */
-.nav--b-item:hover .flyout {
-  opacity: 1;
-  visibility: visible;
-}
-
-.nav--b--sm .flyout.is-visible {
-  @include translate(0, null);
-  // visibility:visible;
-}
-
-.flyout-item.is-active .flyout--nested {
-  max-height: 1000vh;
-  // visibility:visible;
 }

@@ -19,7 +19,7 @@ const cities = [
 ];
 
 export const markup = `<div class="soft-shadow p1 cf">
-  <nav class="nav--b-sub">
+  <nav class="nav--b--sub">
     <ul>
       <li class="nav--b-item caret caret--bottom">
         <a href="#">follow us</a>
@@ -27,8 +27,8 @@ export const markup = `<div class="soft-shadow p1 cf">
           ${social.map((platform) => `<li class="flyout-item">
               <a href=${platform.link}>
                 <svg class="icon icon--md icon--${platform.name} mr1" role="img" aria-labelledby="title">
-                  <title>{{platform}} Icon</title>
-                  <desc>A ${platform.platform} Icon </desc>
+                  <title>${platform.name}</title>
+                  <desc>Get up-to-date product information on ${platform.name}</desc>
                   <use xlink:href=#${platform.name}></use>
                 </svg>
                 Follow on ${platform.name}
@@ -141,8 +141,8 @@ export const markup = `<div class="soft-shadow p1 cf">
         <div class="flex">
           ${social.map((platform) => `<a href="#" class="mr2">
             <svg class="icon icon--md icon--${platform.name}" role="img" aria-labelledby="title">
-              <title>${platform.name} Icon</title>
-              <desc>A ${platform.name} Icon </desc>
+              <title>${platform.name}</title>
+              <desc>Get up-to-date product information on ${platform.name}</desc>
               <use xlink:href=#${platform.name}></use>
             </svg>
           </a>`).join('')}
