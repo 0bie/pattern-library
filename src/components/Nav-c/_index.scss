@@ -1,4 +1,4 @@
-.Nav-c {
+.nav--c {
   width: 100%;
   overflow: hidden;
   color: inherit;
@@ -10,17 +10,20 @@
   }
 }
 
-.Nav-c__container {
+.nav--c-container {
   display: flex;
   padding: 0.5em;
 }
 
-.Nav-c__container .logo {
+.nav--c-container .logo {
   font-size: 1rem;
   flex-grow: 4;
+  display: inline-block;
+  text-transform: capitalize;
+  letter-spacing: 0.05em;
 }
 
-.Nav-c__container .logo a {
+.nav--c-container .logo a {
   display: block;
   max-width: 10em;
   height: 1.5em;
@@ -29,25 +32,23 @@
   text-decoration: none;
 }
 
-.Nav-c__container .icon--logo {
+.nav--c-container .logo-text {
+  visibility: hidden;
+  display: inline-block;
+
+  @include breakpoint(min, 24.1875em) {
+    visibility: visible;
+  }
+}
+
+.nav--c-container .icon--logo {
   vertical-align: middle;
   margin-top: -0.35em;
 }
 
-.Nav-c__container .logo span {
-  display: none;
-
-  @include breakpoint(min, 29.375em) {
-    display: inline-block;
-    text-transform: capitalize;
-    letter-spacing: 0.05em;
-  }
-}
-
-.Nav-c__container .menu {
+.nav--c-menu {
   @include transition(background-color, 0.1s);
   display: inline-block;
-  height: 1.5em;
   border: 0.0625em solid currentColor;
   padding-left: 0.3125em;
   padding-right: 0.3125em;
@@ -58,7 +59,7 @@
   }
 }
 
-.Nav-c__container .menu:before {
+.nav--c-menu:before {
   content: "Menu";
   color: inherit;
 
@@ -67,8 +68,7 @@
   }
 }
 
-.Nav-c__container .form {
-  height: 1.5em;
+.nav--c-form {
   display: flex;
   overflow: hidden;
   margin-right: 0.625em;
@@ -79,47 +79,31 @@
   }
 }
 
-.Nav-c__container .form .icon {
-  position: relative;
-  bottom: 0.3125em;
-  left: 0.0625em;
-
-  width: 1em;
-  color: #fff;
+.nav--c-form .btn {
+  display: flex;
+  border-color: transparent;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
 }
 
-.Nav-c__container .button {
-  @include transition(background-color, 0.1s); /* Refer to base.mixins */
-  position: relative;
-  z-index: get-zindex(base); /* Refer to base.config for z-index scale */
-
-  width: 1.5em;
-  height: 1.5em;
-  color: #222;
-  background-color: currentColor;
-  border-left: 0;
-}
-
-.Nav-c__container .button:focus {
-  outline: 0;
-}
-
-.Nav-c__container .form__container {
-  height: 1.5em;
-}
-
-.Nav-c__container .input {
-  height: 1.375em;
-  line-height: 1.5;
+.nav--c-form .input {
   padding-left: 0.3125em;
   padding-right: 0.3125em;
 }
 
-.Nav-c__container .input:focus {
+.nav--c-form .input:focus {
   outline: 0;
 }
 
-.Nav-c__list {
+.nav--c-form .input:focus ~ .btn {
+  background-color: currentColor;
+}
+
+.nav--c-form .input:focus ~ .btn .icon {
+  color: var(--skin-default-fore);
+}
+
+.nav--c-list {
   overflow: hidden;
 
   @include breakpoint(max, $smaller) {
@@ -130,8 +114,8 @@
   }
 }
 
-.Nav-c__item {
-  @include transition(opacity, 0.75s, ease-in-out);
+.nav--c-item {
+  @include transition(opacity, 0.75s, ease);
   padding-top: 1.25em;
   opacity: 0;
 
@@ -142,80 +126,67 @@
   }
 }
 
-.Nav-c__item:nth-of-type(1) {
+.nav--c-item:nth-of-type(1) {
   transition-delay: 0.05s;
 }
 
-.Nav-c__item:nth-of-type(2) {
+.nav--c-item:nth-of-type(2) {
   transition-delay: 0.1s;
 }
 
-.Nav-c__item:nth-of-type(3) {
+.nav--c-item:nth-of-type(3) {
   transition-delay: 0.15s;
 }
 
-.Nav-c__item:nth-of-type(4) {
+.nav--c-item:nth-of-type(4) {
   transition-delay: 0.2s;
 }
 
-.Nav-c__item:nth-of-type(5) {
+.nav--c-item:nth-of-type(5) {
   transition-delay: 0.25s;
 }
 
-.Nav-c__item:nth-of-type(6) {
+.nav--c-item:nth-of-type(6) {
   transition-delay: 0.3s;
 }
 
-.Nav-c__item a {
+.nav--c-item a {
   color: inherit;
   text-decoration: none;
   text-transform: capitalize;
 }
 
-/* Interaction states for menu button */
-.Nav-c__container .menu:hover {
-  background-color: #222;
+/* Interaction states for nav--c-menu button */
+.nav--c-menu:hover {
+  background-color: var(--skin-default);
 }
 
-.Nav-c__container .menu:hover:before {
-  color: #fff;
-}
-
-
-/* Interaction states for nav form */
-.Nav-c__container .form:hover .button,
-.Nav-c__header.is-active .button {
-  background-color: #fff;
-  border-color: transparent;
-}
-
-.Nav-c__container .form:hover .icon,
-.Nav-c__header.is-active .icon {
-  color: #222;
+.nav--c-menu:hover:before {
+  color: var(--skin-default-fore);
 }
 
 /* Interaction states for nav content in smaller viewports */
-.Nav-c__header.is-open .menu {
-  background-color: #222;
+.nav--c--active .nav--c-menu {
+  background-color: var(--skin-default);
 }
 
-.Nav-c__header.is-open .menu:before {
+.nav--c--active .nav--c-menu:before {
   content: "Close";
-  color: #fff;
+  color: var(--skin-default-fore);
 }
 
-.Nav-c__header.is-open .Nav-c__list {
+.nav--c--active .nav--c-list {
   height: 100vh;
   opacity: 1;
   visibility: visible;
   background-color: #fff;
 }
 
-.Nav-c__header.is-open .Nav-c__item {
+.nav--c--active .nav--c-item {
   opacity: 1;
 }
 
 /* Prevent background scrolling when nav modal is active */
-html.Nav-c_is-open {
+html.nav--c--active {
   overflow: hidden;
 }

@@ -8,30 +8,29 @@ document.addEventListener('DOMContentLoaded', () => {
   markup ? div.innerHTML = markup : '';
   document.getElementById('view').appendChild(div);
 
-  // Nav-c: hide/show nav on smaller viewports
+  // nav--c: hide/show nav on smaller viewports
   const toggleMobileNav = (() => { // eslint-disable-line no-unused-vars
-    const
-      nav = document.querySelector('.js-Nav-c'),
-      menuButton = document.querySelector('.js-Nav-c__menu'),
-      navContainer = document.querySelector('.js-Nav-c__container'),
-      rootElement = document.documentElement;
-    nav.setAttribute('aria-hidden', 'true');
+    const nav = document.querySelector('.js-nav--c'),
+          navList = document.querySelector('.js-nav--c-list'),
+          menuButton = document.querySelector('.js-nav--c-menu'),
+          rootElement = document.documentElement;
+    navList.setAttribute('aria-hidden', 'true');
     menuButton.addEventListener('click', () => {
-      navContainer.classList.toggle('is-open');
-      rootElement.classList.toggle('Nav-c_is-open');
+      nav.classList.toggle('nav--c--active');
+      rootElement.classList.toggle('nav--c--active');
       // Remove mobile nav properties on larger viewports
       $(window).resize(() => {
         const breakpoint = 640;
         if ($(window).width() >= breakpoint){
-          rootElement.classList.remove('Nav-c_is-open');
-          navContainer.classList.remove('is-open');
+          rootElement.classList.remove('nav--c--active');
+          nav.classList.remove('nav--c--active');
         }
       });
-      // Toggle hidden attribute on js-Nav-c
-      if (navContainer.classList.contains('is-open') && navContainer.contains(nav)){
-        nav.setAttribute('aria-hidden', 'false');
-      } else if(!navContainer.classList.contains('is-open') && navContainer.contains(nav)){
-        nav.setAttribute('aria-hidden', 'true');
+      // Toggle hidden attribute on js-nav--c
+      if (nav.classList.contains('nav--c--active') && nav.contains(navList)){
+        navList.setAttribute('aria-hidden', 'false');
+      } else if(!nav.classList.contains('nav--c--active') && nav.contains(navList)){
+        navList.setAttribute('aria-hidden', 'true');
       }
     });
   })();
