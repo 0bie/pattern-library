@@ -1,8 +1,8 @@
 ## A collection of reusable components
 
 - Install:
-  - Launch terminal
-  - `git clone https://github.com/0bie/_Blank.git`
+  - Launch Terminal.app
+  - `git clone https://github.com/0bie/pattern-library.git`
   - `cd _Blank && npm install`
 
 - Dev Server: `npm start`
@@ -13,4 +13,4 @@
 
 - Build: `npm run build`
 
-- See `package.json`
+- See [`package.json`](https://github.com/0bie/pattern-library/blob/master/package.json) for more npm scripts
