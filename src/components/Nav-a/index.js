@@ -1,4 +1,3 @@
-// import $ from 'jquery';
 import { markup } from './template';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,18 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
   const showMobileNav = (() => { // eslint-disable-line no-unused-vars
-    const
-      menuIcon = document.querySelector('.js-nav--a .icon--menu');
-    //   mainNav = document.querySelector('.js-nav--a');
-    // Remove mainNav on smaller viewports
-    // $(window).resize(() => {
-    //   const breakpoint = 640;
-    //   if ( $(window).width() <= breakpoint ){
-    //     mainNav.classList.add('isRemoved');
-    //   } else {
-    //     mainNav.classList.remove('isRemoved');
-    //   }
-    // });
+    const menuIcon = document.querySelector('.js-nav--a .icon--menu');
     menuIcon.addEventListener('click', toggleMobileNav, false);
   })();
   const hideMobileNav = (() => { // eslint-disable-line no-unused-vars
