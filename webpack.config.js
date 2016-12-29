@@ -1,46 +1,67 @@
 const webpack = require('webpack');
-const writeFilePlugin = require('write-file-webpack-plugin');
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'source-map',
-  entry:  __dirname + "/src/index.js",
-  output: {
-    path: __dirname + "/build",
-    filename: "bundle.js"
+  // devtool: 'eval-source-map',
+  entry:  {
+    'bundle': path.resolve(__dirname, 'src/index'),
+    // 'jquery/bundle': 'jquery'
   },
-
+  output: {
+    path: path.join(__dirname, '/build'),
+    publicPath: '/build/',
+    filename: '[name].js'
+  },
   module: {
     rules: [
       {
         test: /\.json$/,
-        loader: "json",
+        loader: 'json-loader',
         exclude: /node_modules/,
-        include: path.join(__dirname, 'src'),
+        include: path.join(__dirname, 'src')
       },
       {
         test: /\.js$/,
+        loader: 'babel-loader',
         exclude: /node_modules/,
-        loader: 'babel',
+        include: path.join(__dirname, 'src')
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          // TODO: Set up production/dev env configs
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader?sourceMap'
+        }),
         exclude: /node_modules/,
-        include: path.join(__dirname, 'src'),
+        include: path.join(__dirname, 'src')
       }
     ]
   },
   plugins: [
     // new HtmlWebpackPlugin({
-    //     template: __dirname + "/src/index.tmpl.html"
+    //     template: __dirname + '/src/index.tmpl.html'
     // }),
-    new writeFilePlugin(),
+    new ExtractTextPlugin({
+      filename: 'bundle.css',
+      disable: false,
+      allChunks: true
+    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   names: ['jquery/bundle', 'manifest']
+    // }),
     new webpack.HotModuleReplacementPlugin()
   ],
-
   devServer: {
-    colors: true,
+    open: true,
     historyApiFallback: true,
     inline: true,
     hot: true,
-    outputPath: __dirname + "/build"
+    publicPath: '/build/'
+  },
+  performance: {
+    hints: false
   }
 }
