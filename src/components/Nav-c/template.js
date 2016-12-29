@@ -1,10 +1,10 @@
 const items = [
-  {item: 'home'},
-  {item: 'products'},
-  {item: 'research'},
-  {item: 'awards'},
-  {item: 'white papers'},
-  {item: 'contact'}
+  {item: 'Home'},
+  {item: 'Products'},
+  {item: 'Research'},
+  {item: 'Awards'},
+  {item: 'White Papers'},
+  {item: 'Contact'}
 ];
 
 export const markup = `<div class="js-nav--c">

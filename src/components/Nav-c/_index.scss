@@ -54,7 +54,7 @@
   padding-right: 0.3125em;
   cursor: pointer;
 
-  @include breakpoint(min, $smaller) {
+  @include breakpoint(min, $postSmaller) {
     display: none;
   }
 }
@@ -74,7 +74,7 @@
   margin-right: 0.625em;
   border: 1px solid currentColor;
 
-  @include breakpoint(min, $smaller) {
+  @include breakpoint(min, $postSmaller) {
     margin-right: 0;
   }
 }
@@ -87,6 +87,7 @@
 }
 
 .nav--c-form .input {
+  appearance: none; /* Remove default outline for input in safari webkit */
   padding-left: 0.3125em;
   padding-right: 0.3125em;
 }
@@ -119,7 +120,7 @@
   padding-top: 1.25em;
   opacity: 0;
 
-  @include breakpoint(min, $smaller) {
+  @include breakpoint(min, $postSmaller) {
     opacity: 1;
     display: inline;
     margin-right: 1.875em;
@@ -187,6 +188,6 @@
 }
 
 /* Prevent background scrolling when nav modal is active */
-html.nav--c--active {
+main.nav--c--active {
   overflow: hidden;
 }
