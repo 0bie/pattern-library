@@ -62,7 +62,7 @@
    */
   position: relative;
   bottom: 0;
-  z-index: calc(get-zindex(flyoutt) - 10);
+  z-index: ( get-zindex(flyout) - 10 );
 }
 
 .card-container:hover .flyout {
