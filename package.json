@@ -41,7 +41,7 @@
     "postcss-color-function": "^2.0.1",
     "postcss-css-variables": "^0.6.0",
     "pre-commit": "^1.2.2",
-    "sass-lint": "^1.9.1",
+    "sass-lint": "1.9.1",
     "webpack": "^2.2.0-rc.2",
     "webpack-dev-server": "^2.2.0-rc.0"
   },

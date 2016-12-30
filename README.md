@@ -3,7 +3,7 @@
 - Install:
   - Launch Terminal.app
   - `git clone https://github.com/0bie/pattern-library.git`
-  - `cd _Blank && npm install`
+  - `cd pattern-library && npm install`
 
 - Dev Server: `npm start`
 
